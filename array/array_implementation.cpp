@@ -16,6 +16,8 @@ public:
     void display();
     void update(int index, int value);
     void setVal(int totalItems);
+    void append(int value);
+    
 };
 
 // constructor - creates array as a abstract data type
@@ -72,11 +74,81 @@ void myArray::setVal(int totalItems){
     std::cout << totalItems << " items entered." << std::endl;
 }
 
+void myArray::remove(int index){
+    if (index >= 0 && index < used_size) {
+        for(int i=index; i<used_size; i++){
+            ptr[i] = ptr[i+1];
+        }
+        used_size--;
+        std::cout << "Item removed" << std::endl;
+    } else {
+        std::cout << "Item removed unsuccessful" << std::endl;
+    }
+}
+
+int myArray::search(int value){
+    for(int i=0; i<used_size; i++){
+        if(ptr[i] == value){
+            return i;
+        }
+    }
+    return -1;
+}
+
+void myArray::sort(){
+    if(used_size <= 1) return;
+    int temp = 0;
+    for(int i=0; i<used_size; i++){
+        for(int j=i+1; j<used_size; j++){
+            if(ptr[i]>ptr[j]){
+                temp = ptr[i];
+                ptr[i] = ptr[j];
+                ptr[j] = temp;
+            }
+        }
+    }
+    std::cout << "Sorting Successful" << std::endl;
+}
+
+void myArray::update(int index, int value){
+    if(index>0 && index<used_size){
+        ptr[index] = value;
+        std::cout << "Value updated" << std::endl;
+    }
+}
+
+void myArray::resize(int newSize){
+    int * new_ptr = new int[newSize];
+    for(int i=0; i<used_size; i++){
+        new_ptr[i] = ptr[i];
+    }
+    delete [] ptr;
+    total_size = newSize;
+    ptr = new_ptr;
+}
+
+void myArray::append(int value){
+    if(used_size<total_size){
+        ptr[used_size] = value;
+        used_size++;
+    } else {
+        std::cout << "Array Size Full" << std::endl;
+    }
+}
 int main(){
-    myArray a1(10);
-    a1.setVal(3);
+    myArray a1(3);
+    a1.append(10);
+    a1.append(3);
+    a1.append(1);
+    a1.append(8);
+    a1.append(5);
     a1.display();
-    a1.insert(0, 10);
+    a1.sort();
+    a1.display();
+    a1.resize(5);
+    a1.append(10);
+    a1.append(20);
+    a1.append(30);
     a1.display();
 
     return 0;
