@@ -24,12 +24,43 @@ void bubbleSort(int * arr, int n){
     }
 }
 
+void bubbleSortAdaptive(int * arr, int n){
+    int temp = 0;
+    int isSorted = 0;
+
+    for(int i=0; i<n-1; i++){
+        isSorted = 1;
+        for(int j=0; j<n-1-i; j++){
+            if(arr[j]>arr[j+1]){
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+                isSorted = 0;
+            }
+        }
+        if(isSorted){
+            return;
+        }
+    }
+}
+
 int main(){
-    int arr[] = {12,1,4,3,5,0,2};
+    int arr[] = {1,4,3,5,0,2};
+    int arr2[] = {10,9,3,2,0,6,4,3,1,5,8};
+    int size1 = 6, size2 = 10;
+    // bubble sort unadaptive part
     std::cout << "Unsorted array" << std::endl;
-    printArray(arr, 7);
-    bubbleSort(arr, 7);
+    printArray(arr, size1);
+    bubbleSort(arr, size1);
     std::cout << "Sorted array" << std::endl;
-    printArray(arr, 7);
+    printArray(arr, size1);
+     std::cout << std::endl;
+
+    //bubble Sort Adaptive part 
+    std::cout <<"Unsorted array - Adaptive" << std::endl;
+    printArray(arr2, size2);
+    bubbleSortAdaptive(arr2, size2);
+    std::cout << "Sorted array " << std::endl;
+    printArray(arr2, size2);
     return 0;
 }
