@@ -2,6 +2,7 @@
 
 //Time Complexity - O(n^2)
 //Bubble Sort 
+void bubbleSortPractice(int*, int);
 
 void printArray(int* arr, int size){
     std::cout << "-----------------------------" << std::endl;
@@ -59,8 +60,27 @@ int main(){
     //bubble Sort Adaptive part 
     std::cout <<"Unsorted array - Adaptive" << std::endl;
     printArray(arr2, size2);
-    bubbleSortAdaptive(arr2, size2);
+    bubbleSortPractice(arr2, size2);
     std::cout << "Sorted array " << std::endl;
     printArray(arr2, size2);
     return 0;
+}
+
+void bubbleSortPractice(int * arr, int size){
+    int temp;
+    int isSorted = 0;
+    for(int i=0; i<size-1; i++){
+        isSorted = 1;
+        for(int j=0; j<size-1-i;j++){
+            if(arr[j] > arr[j+1]){
+            temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+            isSorted = 0;
+            }
+        }
+        if(isSorted){
+            return;
+        }
+    }
 }
