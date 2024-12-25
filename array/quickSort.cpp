@@ -1,5 +1,6 @@
 #include <iostream>
 
+void bubbleSort(int *, int);
 void printArray(int* arr, int size){
     std::cout << "-----------------------------" << std::endl;
     for(int i=0; i<size; i++){
@@ -52,8 +53,23 @@ int main(){
     std::cout << "Unsorted array" << std::endl;
     printArray(arr, size);
     quickSort(arr, 0, size-1);
+    // bubbleSort(arr, size);
     std::cout << "Sorted array" << std::endl;
     printArray(arr, size);
      std::cout << std::endl;
     return 0;
+}
+
+
+void bubbleSort(int * arr, int size){
+    int temp;
+    for(int i=0;i<size-1; i++){
+        for(int j=0; j<size-1-i; j++){
+            if(arr[j]> arr[j+1]){
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
 }
