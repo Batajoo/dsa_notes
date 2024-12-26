@@ -1,5 +1,7 @@
 #include <iostream>
 
+void insertionSort(int *, int);
+
 
 void printArray(int* arr, int size){
     std::cout << "-----------------------------" << std::endl;
@@ -60,10 +62,24 @@ int main(){
     // bubble sort unadaptive part
     std::cout << "Unsorted array" << std::endl;
     printArray(arr, size);
-    mergeSort(arr, 0, size-1);
+    // mergeSort(arr, 0, size-1);
     // merge(arr, 0, 5, size);
+    insertionSort(arr, size);
     std::cout << "Sorted array" << std::endl;
     printArray(arr, size);
      std::cout << std::endl;
     return 0;
+}
+
+void insertionSort(int * arr, int size){
+    int temp;
+    for(int i=1; i<size; i++){
+        int key = arr[i];
+        int j = i -1;
+        while(j>=0 && key<arr[j]){
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = key;
+    }   
 }
