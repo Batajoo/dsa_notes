@@ -20,9 +20,40 @@ void pushZerosToEnd(std::vector<int> &arr){
     temp.swap(arr);
 }
 
+// two traversal approach
+void pushZerosToEnd2(std::vector<int> &arr){
+    int nonZeroCount = 0;
+    int n = arr.size();
+    for(int i=0;i<n; i++){
+        if(arr[i] != 0){
+            arr[nonZeroCount++] = arr[i];
+        }
+    }
+
+    while(nonZeroCount < n){
+        arr[nonZeroCount++] = 0;
+    }
+}
+
+//one traversal approach
+
+void pushZerosToEnd3(std::vector<int> &arr){
+    int nonZeroCount = 0; 
+    int n = arr.size();
+
+    for(int i=0; i<n; i++){
+        if(arr[i] != 0){
+            arr[nonZeroCount++] = arr[i];
+        } else {
+            arr[i] = 0;
+        }
+    }
+}
+
+
 int main() {
     vector<int> arr = {1, 2, 0, 4, 3, 0, 5, 0};
-    pushZerosToEnd(arr);
+    pushZerosToEnd3(arr);
 
     // Print the modified array
     for (int num : arr) {
