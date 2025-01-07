@@ -43,17 +43,21 @@ void pushZerosToEnd3(std::vector<int> &arr){
 
     for(int i=0; i<n; i++){
         if(arr[i] != 0){
-            arr[nonZeroCount++] = arr[i];
-        } else {
-            arr[i] = 0;
+            std::swap(arr[i], arr[nonZeroCount]);
+            nonZeroCount++;
         }
     }
 }
 
+void pushZerosToEnd4(vector<int> &arr){
+    stable_partition(arr.begin(), arr.end(), [](int n){
+        return n!=0;
+    });
+}
 
 int main() {
     vector<int> arr = {1, 2, 0, 4, 3, 0, 5, 0};
-    pushZerosToEnd3(arr);
+    pushZerosToEnd4(arr);
 
     // Print the modified array
     for (int num : arr) {
