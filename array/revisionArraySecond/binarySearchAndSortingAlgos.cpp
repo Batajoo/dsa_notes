@@ -10,6 +10,9 @@ void displayVector(vector<int> *);
 void selectionSort(vector<int> *);
 void insertionSort(vector<int> *);
 void generateRandomArray(vector<int> *, int);
+void quickSort(vector<int> *, int, int);
+
+int partition(vector<int> *, int, int);
 
 int main(){
     vector<int> arr1;
@@ -34,10 +37,15 @@ int main(){
 
     */
 
+    /*
+    // quick sort
     insertionSort(&arr1);
     displayVector(&arr1);
     
+    */
 
+    quickSort(&arr1, 0, arr1.size()-1);
+    displayVector(&arr1);
     return 0;
 }
 
@@ -94,5 +102,31 @@ void generateRandomArray(vector<int> *arr, int size){
         int randomNumber = random_number_range(myDevice);
         arr->push_back(randomNumber);
         counter++;
+    }
+}
+
+int partition(vector<int> *arr, int low, int high){
+    int pivot = (*arr)[high];
+    int i = low - 1;
+    
+    for(int j = low; j<=high-1; j++){
+        if((*arr)[j] < pivot){
+            i++;
+            swap((*arr)[i], (*arr)[j]);
+        }
+    }
+
+    swap((*arr)[i+1], (*arr)[high]);
+    return i+1;
+
+}
+
+void quickSort(vector<int> * arr, int low, int high){
+
+    if(low < high){
+        int pi = partition(arr, low, high);
+        
+        quickSort(arr, low, pi-1);
+        quickSort(arr, pi+1, high);
     }
 }
