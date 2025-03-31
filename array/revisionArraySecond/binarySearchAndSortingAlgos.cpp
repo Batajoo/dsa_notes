@@ -13,6 +13,7 @@ void generateRandomArray(vector<int> *, int);
 void quickSort(vector<int> *, int, int);
 
 int partition(vector<int> *, int, int);
+int partition2(vector<int> *, int, int);
 
 int main(){
     vector<int> arr1;
@@ -124,9 +125,32 @@ int partition(vector<int> *arr, int low, int high){
 void quickSort(vector<int> * arr, int low, int high){
 
     if(low < high){
-        int pi = partition(arr, low, high);
+        int pi = partition2(arr, low, high);
         
         quickSort(arr, low, pi-1);
         quickSort(arr, pi+1, high);
     }
+}
+
+int partition2(vector<int> * arr, int low, int high){
+    int n = arr->size();
+    int pivot = (*arr)[low];
+
+    int i = low + 1;
+    int j = high;
+    
+    do{
+        while(arr->at(i) <= pivot){
+            i++;
+        }
+
+        while(arr->at(j) > pivot){
+            j--;
+        }
+
+        if(i < j) swap((*arr)[i], (*arr)[j]);
+    } while(i < j);
+
+    swap((*arr)[low], (*arr)[j]);
+
 }
