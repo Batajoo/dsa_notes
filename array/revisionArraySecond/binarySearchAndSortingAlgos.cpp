@@ -14,6 +14,7 @@ void quickSort(vector<int> *, int, int);
 
 int partition(vector<int> *, int, int);
 int partition2(vector<int> *, int, int);
+int partitionHoare(vector<int> *, int, int);
 
 int main(){
     vector<int> arr1;
@@ -106,6 +107,7 @@ void generateRandomArray(vector<int> *arr, int size){
     }
 }
 
+// Lomuto Partition
 int partition(vector<int> *arr, int low, int high){
     int pivot = (*arr)[high];
     int i = low - 1;
@@ -125,9 +127,9 @@ int partition(vector<int> *arr, int low, int high){
 void quickSort(vector<int> * arr, int low, int high){
 
     if(low < high){
-        int pi = partition2(arr, low, high);
+        int pi = partitionHoare(arr, low, high);
         
-        quickSort(arr, low, pi-1);
+        quickSort(arr, low, pi);
         quickSort(arr, pi+1, high);
     }
 }
@@ -152,5 +154,26 @@ int partition2(vector<int> * arr, int low, int high){
     } while(i < j);
 
     swap((*arr)[low], (*arr)[j]);
+    return j;
+}
 
+
+int partitionHoare(vector<int> *arr, int low, int high){
+    int pivot = arr->at(low);
+    int i = low - 1;
+    int j = high + 1;
+
+    while(i<j){
+        do{
+            i++;
+        } while(arr->at(i) < pivot);
+
+        do{
+            j--;
+        }while(arr->at(j) > pivot);
+
+        if(i>=j) return j;
+        
+        swap((*arr)[i], (*arr)[j]);
+    }
 }
