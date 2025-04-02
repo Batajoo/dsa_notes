@@ -57,9 +57,23 @@ int maxSum(int arr[], int n, int k){
     return maxSum;
 }
 
+int maxSumSlidingWindow2(int arr[], int n, int k){
+    if(n < k) return -1;
+
+    int maxSum = 0;
+    for(int i=0; i<k; i++){
+        maxSum += arr[i];
+    }
+
+    for(int i=k; i<n;i++){
+        maxSum += arr[i] - arr[i-k];
+    }
+    return maxSum;
+}
+
 void findMaximumSumOfAllSubarraysSizeK(){
     int arr[] = { 1, 4, 2, 10, 2, 3, 1, 0, 20 };
     int k = 4;
     int n = sizeof(arr) / sizeof(arr[0]);
-    cout << maxSum(arr, n, k);
+    cout << maxSumSlidingWindow2(arr, n, k);
 }
