@@ -64,9 +64,10 @@ int maxSumSlidingWindow2(int arr[], int n, int k){
     for(int i=0; i<k; i++){
         maxSum += arr[i];
     }
-
+    int window_sum = maxSum;
     for(int i=k; i<n;i++){
-        maxSum += arr[i] - arr[i-k];
+        window_sum += arr[i] - arr[i-k];
+        maxSum = max(window_sum, maxSum);
     }
     return maxSum;
 }
