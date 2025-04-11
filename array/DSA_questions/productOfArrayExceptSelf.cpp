@@ -2,24 +2,20 @@
 
 using namespace std;
 
-
+// O(n2) time complexity - not optimal solution
 vector<int> productExceptSelf(vector<int>& nums) {
-    int totalWindow = 1;
-    int index = 0;
-    int n = nums.size();
-    for(int i = index; i<n; i++){
-        totalWindow *= nums[i];
-    }
-    cout << totalWindow << endl;
-    int i = 1;
-    int j = n - 1;
     vector<int> result;
-    result.push_back(totalWindow);
-    while(index < n){
-        cout << totalWindow << endl;
-        totalWindow = totalWindow / nums[(i++ % n)] / nums[index++] * nums[(++j % n)];
-        result.push_back(totalWindow);
+    int n = nums.size();
+
+    for(int i = 0; i<n; i++){
+        int total = 1;
+        for(int j = 0; j<n; j++){
+            if(i!=j)
+                total *= nums[j];
+        }
+        result.push_back(total);
     }
+
     return result;
 }
 
