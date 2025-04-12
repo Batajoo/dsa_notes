@@ -23,6 +23,6 @@ int main(){
     vector<int> nums = {1,2,3,4};
     vector<int> result = productExceptSelf(nums);
     for(int value: result){
-        cout << value << " ";
+        cout << value << " - ";
     }
 }
