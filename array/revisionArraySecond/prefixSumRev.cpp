@@ -17,9 +17,23 @@ vector<int> findPrefixSum(vector<int> arr){
     return prefixSum;
 }
 
+vector<int> findPrefixSum2(vector<int> arr){
+    int n = arr.size();
+
+    vector<int> prefixSum;
+
+    int total = 0;
+    for(int i=0; i<n; i++){
+        total += arr[i];
+        prefixSum.push_back(total);
+    }
+
+    return prefixSum;
+}
+
 int main(){
     vector<int> arr = {10, 20, 10, 5, 15};
-    vector<int> prefixSum = findPrefixSum(arr);
+    vector<int> prefixSum = findPrefixSum2(arr);
     for(auto i:prefixSum) {
         cout<<i<<" ";
     }
